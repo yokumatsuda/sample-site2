@@ -11,9 +11,20 @@ type SocialProps = {
   iconSize?: CSSProperties["fontSize"];
 };
 
+type SocialStyle = CSSProperties & {
+  "--icon-size": CSSProperties["fontSize"];
+};
+
 export default function Social({ iconSize = "initial" }: SocialProps) {
+  const socialStyle: SocialStyle = {
+    "--icon-size": iconSize,
+  };
+
   return (
-    <ul className="flex gap-[1.5em]" style={{ fontSize: iconSize }}>
+    <ul
+      className="flex gap-[1.5em] [font-size:var(--icon-size,24px)]"
+      style={socialStyle}
+    >
       <li>
         <a
           href="https://twitter.com/"
