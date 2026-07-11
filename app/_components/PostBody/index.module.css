@@ -1,5 +1,6 @@
 /* app\_components\PostBody\index.module.css */
-.stack > * + * {
+.stack > * + *,
+.stack > div > * + * {
   margin-top: var(--stack-space, 1.5em);
 }
 

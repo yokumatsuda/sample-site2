@@ -5,6 +5,7 @@ import PageNumbers from "../_components/PageNumbers";
 import CategoryFilter from "../_components/CategoryFilter";
 import { getAllCategories, getPostsPage } from "../libs/microcms";
 import { eyecatchLocal } from "../libs/constants";
+import Hero from "../_components/Hero";
 
 const POSTS_PER_PAGE = 10;
 
@@ -28,9 +29,10 @@ export default async function BlogPage() {
 
   return (
     <>
+      <Hero title="Blog" subtitle="Recent Posts" />
       <CategoryFilter categories={categories} />
-      <Posts posts={posts} />
 
+      <Posts posts={posts} />
       <PageNumbers
         currentPage={1}
         totalPages={totalPages}
