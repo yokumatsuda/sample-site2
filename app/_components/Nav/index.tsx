@@ -54,6 +54,11 @@ function NavInner() {
             Blog
           </Link>
         </li>
+        <li>
+          <Link href="/contact" onClick={closeNav}>
+            Contact
+          </Link>
+        </li>
       </ul>
     </nav>
   );
