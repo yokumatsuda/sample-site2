@@ -1,6 +1,7 @@
 // C:\Users\49mat\portfolio\sample-site2\app\layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import { siteMeta } from "./libs/constants";
@@ -8,6 +9,8 @@ import { siteMeta } from "./libs/constants";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
+
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 const {
   siteTitle,
@@ -59,6 +62,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
       </body>
+      {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
 }
