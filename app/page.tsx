@@ -45,7 +45,11 @@ export default async function Home() {
 
   return (
     <Container>
-      <Hero title="YOKU" subtitle="アウトプットしていくサイト" imageOn />
+      <Hero
+        title="YOKU"
+        subtitle="Yoku Web デザインのサンプルサイトです"
+        imageOn
+      />
       <Posts posts={posts} />
     </Container>
   );
