@@ -22,12 +22,7 @@ type BlogPageProps = {
 };
 
 export async function generateStaticParams() {
-  const data = await getPostsPage(1, 0);
-  const totalPages = Math.ceil(data.totalCount / POSTS_PER_PAGE);
-
-  return Array.from({ length: Math.max(totalPages - 1, 0) }, (_, index) => ({
-    page: String(index + 2),
-  }));
+  return [];
 }
 
 export async function generateMetadata({

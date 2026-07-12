@@ -29,24 +29,7 @@ function getCategoryPageUrl(slug: string, page: number) {
 }
 
 export async function generateStaticParams() {
-  const categories = await getAllCategories();
-
-  const params: { slug: string; page: string }[] = [];
-
-  for (const category of categories) {
-    const categorySlug = category.slug ?? category.id;
-    const data = await getPostsByCategoryPage(category.id, 1, 0);
-    const totalPages = Math.ceil(data.totalCount / POSTS_PER_PAGE);
-
-    for (let page = 2; page <= totalPages; page += 1) {
-      params.push({
-        slug: categorySlug,
-        page: String(page),
-      });
-    }
-  }
-
-  return params;
+  return [];
 }
 
 export async function generateMetadata({
