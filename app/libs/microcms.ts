@@ -65,7 +65,7 @@ export async function getAllCategories(limit = 100): Promise<Category[]> {
   const data = await client.getList<Category>({
     endpoint: "categories",
     queries: {
-      fields: "id,name,slug",
+      fields: "id,name,slug,updatedAt,revisedAt",
       limit,
     },
   });
@@ -92,7 +92,7 @@ export const getAllSlugs = cache(async (): Promise<BlogSlugItem[]> => {
   const firstData = await client.getList<BlogSlugItem>({
     endpoint: "blogs",
     queries: {
-      fields: "title,slug",
+      fields: "title,slug,updatedAt,revisedAt",
       orders: "-publishDate",
       limit: MICROCMS_MAX_LIMIT,
       offset: 0,
@@ -115,7 +115,7 @@ export const getAllSlugs = cache(async (): Promise<BlogSlugItem[]> => {
       client.getList<BlogSlugItem>({
         endpoint: "blogs",
         queries: {
-          fields: "title,slug",
+          fields: "title,slug,updatedAt,revisedAt",
           orders: "-publishDate",
           limit: MICROCMS_MAX_LIMIT,
           offset,
