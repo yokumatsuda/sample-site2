@@ -7,7 +7,7 @@ import Posts from "@/app/_components/Posts";
 import PageNumbers from "@/app/_components/PageNumbers";
 import CategoryFilter from "@/app/_components/CategoryFilter";
 import { getAllCategories, getPostsByCategoryPage } from "@/app/libs/microcms";
-import { eyecatchLocal } from "@/app/libs/constants";
+import { eyecatchLocal, siteMeta } from "@/app/libs/constants";
 
 const POSTS_PER_PAGE = 10;
 
@@ -38,19 +38,47 @@ export async function generateMetadata({
   const { slug, page } = await params;
   const currentPage = Number(page);
 
+  if (!Number.isInteger(currentPage) || currentPage < 2) {
+    return {};
+  }
+
   const categories = await getAllCategories();
-  const category = categories.find((category) => {
-    const categorySlug = category.slug ?? category.id;
-    return categorySlug === slug;
-  });
+  const category = categories.find(
+    (category) => (category.slug ?? category.id) === slug,
+  );
 
   if (!category) {
     return {};
   }
 
+  const categorySlug = category.slug ?? category.id;
+  const title = `${category.name}の記事一覧 ${currentPage}ページ目 | ${siteMeta.siteTitle}`;
+  const description = `${category.name}に関する記事一覧の${currentPage}ページ目です。`;
+  const url = `/blog/category/${categorySlug}/page/${currentPage}`;
+
   return {
-    title: `${category.name} ${currentPage}ページ目`,
-    description: `${category.name}に関する記事`,
+    title: `${category.name}の記事一覧 ${currentPage}ページ目`,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    robots: {
+      index: false,
+      follow: true,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "website",
+      images: [siteMeta.siteImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [siteMeta.siteImage.url],
+    },
   };
 }
 

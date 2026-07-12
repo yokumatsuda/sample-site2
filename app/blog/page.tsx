@@ -4,7 +4,7 @@ import Posts from "../_components/Posts";
 import PageNumbers from "../_components/PageNumbers";
 import CategoryFilter from "../_components/CategoryFilter";
 import { getAllCategories, getPostsPage } from "../libs/microcms";
-import { eyecatchLocal } from "../libs/constants";
+import { eyecatchLocal, siteMeta } from "../libs/constants";
 import Hero from "../_components/Hero";
 
 const POSTS_PER_PAGE = 10;
@@ -13,7 +13,26 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "ブログ",
-  description: "ブログの記事一覧",
+  description:
+    "YOKU Web デザインのブログ記事一覧です。Next.js、TypeScript、microCMS、Web制作に関する記事を掲載しています。",
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: `ブログ | ${siteMeta.siteTitle}`,
+    description:
+      "YOKU Web デザインのブログ記事一覧です。Next.js、TypeScript、microCMS、Web制作に関する記事を掲載しています。",
+    url: "/blog",
+    type: "website",
+    images: [siteMeta.siteImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `ブログ | ${siteMeta.siteTitle}`,
+    description:
+      "YOKU Web デザインのブログ記事一覧です。Next.js、TypeScript、microCMS、Web制作に関する記事を掲載しています。",
+    images: [siteMeta.siteImage.url],
+  },
 };
 
 export default async function BlogPage() {

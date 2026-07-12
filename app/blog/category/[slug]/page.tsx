@@ -10,7 +10,7 @@ import {
   getAllCategories,
   getPostsByCategoryPage,
 } from "../../../libs/microcms";
-import { eyecatchLocal } from "../../../libs/constants";
+import { eyecatchLocal, siteMeta } from "../../../libs/constants";
 
 const POSTS_PER_PAGE = 10;
 
@@ -52,9 +52,30 @@ export async function generateMetadata({
     return {};
   }
 
+  const categorySlug = category.slug ?? category.id;
+  const title = `${category.name}の記事一覧 | ${siteMeta.siteTitle}`;
+  const description = `${category.name}に関する記事一覧です。`;
+  const url = `/blog/category/${categorySlug}`;
+
   return {
-    title: category.name,
-    description: `${category.name}に関する記事`,
+    title: `${category.name}の記事一覧`,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "website",
+      images: [siteMeta.siteImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [siteMeta.siteImage.url],
+    },
   };
 }
 

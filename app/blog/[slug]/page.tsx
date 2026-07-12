@@ -17,7 +17,7 @@ import PostCategories from "../../_components/PostCategories";
 import Pagination from "../../_components/Pagination";
 
 import { getAllSlugs, getPostBySlug } from "../../libs/microcms";
-import { eyecatchLocal } from "../../libs/constants";
+import { eyecatchLocal, siteMeta } from "../../libs/constants";
 import { extractText } from "../../libs/extract-text";
 import { prevNextPost } from "../../libs/prev-next-post";
 
@@ -44,23 +44,39 @@ export async function generateMetadata({
     return {};
   }
 
-  const cleanContent = sanitizeHtml(post.content);
-  const description = extractText(cleanContent);
+  const description = extractText(post.content);
   const eyecatch = post.eyecatch ?? eyecatchLocal;
+
+  const title = `${post.title} | ${siteMeta.siteTitle}`;
+  const url = `/blog/${post.slug}`;
 
   return {
     title: post.title,
     description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
-      title: post.title,
+      title,
       description,
+      url,
+      type: "article",
+      publishedTime: post.publishDate,
+      modifiedTime: post.revisedAt ?? post.updatedAt,
       images: [
         {
           url: eyecatch.url,
           width: eyecatch.width,
           height: eyecatch.height,
+          alt: post.title,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [eyecatch.url],
     },
   };
 }
