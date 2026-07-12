@@ -23,7 +23,10 @@ const {
 } = siteMeta;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL("https://sample-site2-liart.vercel.app/"),
+  verification: {
+    google: "rW9tRWfPprDcUQ6MM5i5CZ9wyXlWthyziR1bqJp98w8",
+  },
   title: {
     template: `%s | ${siteTitle}`,
     default: siteTitle,
