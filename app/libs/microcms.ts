@@ -1,5 +1,6 @@
 // app\libs\microcms.ts
 import "server-only";
+import { cache } from "react";
 import {
   createClient,
   type MicroCMSImage,
@@ -71,17 +72,19 @@ export async function getAllCategories(limit = 100): Promise<Category[]> {
   return data.contents;
 }
 
-export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const data = await client.getList<BlogPost>({
-    endpoint: "blogs",
-    queries: {
-      filters: `slug[equals]${slug}`,
-      limit: 1,
-    },
-  });
+export const getPostBySlug = cache(
+  async (slug: string): Promise<BlogPost | null> => {
+    const data = await client.getList<BlogPost>({
+      endpoint: "blogs",
+      queries: {
+        filters: `slug[equals]${slug}`,
+        limit: 1,
+      },
+    });
 
-  return data.contents[0] ?? null;
-}
+    return data.contents[0] ?? null;
+  },
+);
 
 export async function getAllSlugs(limit = 100): Promise<BlogSlugItem[]> {
   const data = await client.getList<BlogSlugItem>({

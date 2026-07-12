@@ -21,7 +21,8 @@ import { eyecatchLocal } from "../../libs/constants";
 import { extractText } from "../../libs/extract-text";
 import { prevNextPost } from "../../libs/prev-next-post";
 
-export const revalidate = 1;
+export const dynamicParams = true;
+export const revalidate = 60;
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -30,11 +31,7 @@ type BlogPostPageProps = {
 };
 
 export async function generateStaticParams() {
-  const allSlugs = await getAllSlugs();
-
-  return allSlugs.map(({ slug }) => ({
-    slug,
-  }));
+  return [];
 }
 
 export async function generateMetadata({

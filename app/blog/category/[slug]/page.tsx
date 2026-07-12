@@ -14,7 +14,7 @@ import { eyecatchLocal } from "../../../libs/constants";
 
 const POSTS_PER_PAGE = 10;
 
-export const revalidate = 1;
+export const revalidate = 60;
 
 export const dynamicParams = false;
 
