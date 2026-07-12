@@ -95,3 +95,20 @@ export async function getAllSlugs(limit = 100): Promise<BlogSlugItem[]> {
 
   return data.contents;
 }
+
+export async function getPostsByCategoryPage(
+  categoryId: string,
+  limit = 10,
+  offset = 0,
+): Promise<MicroCMSListResponse<BlogListItem>> {
+  return client.getList<BlogListItem>({
+    endpoint: "blogs",
+    queries: {
+      fields: "title,slug,eyecatch",
+      filters: `categories[contains]${categoryId}`,
+      orders: "-publishDate",
+      limit,
+      offset,
+    },
+  });
+}

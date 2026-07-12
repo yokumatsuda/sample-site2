@@ -1,22 +1,18 @@
-// app/blog/category/[slug]/page/[page]/page.tsx
+// app\blog\category\[slug]\page\[page]\page.tsx
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import PostHeader from "../../../../../_components/PostHeader";
-import Posts from "../../../../../_components/Posts";
-import PageNumbers from "../../../../../_components/PageNumbers";
-import CategoryFilter from "../../../../../_components/CategoryFilter";
-import {
-  getAllCategories,
-  getPostsByCategoryPage,
-} from "../../../../../libs/microcms";
-import { eyecatchLocal } from "../../../../../libs/constants";
+import PostHeader from "@/app/_components/PostHeader";
+import Posts from "@/app/_components/Posts";
+import PageNumbers from "@/app/_components/PageNumbers";
+import CategoryFilter from "@/app/_components/CategoryFilter";
+import { getAllCategories, getPostsByCategoryPage } from "@/app/libs/microcms";
+import { eyecatchLocal } from "@/app/libs/constants";
 
 const POSTS_PER_PAGE = 10;
 
 export const revalidate = 1;
 
-// Pages Router の fallback: "blocking" に近い挙動
 export const dynamicParams = true;
 
 type CategoryPageProps = {
@@ -115,9 +111,7 @@ export default async function CategoryPagedPage({ params }: CategoryPageProps) {
   return (
     <>
       <PostHeader title={category.name} subtitle="Blog Category" />
-
       <CategoryFilter categories={categories} current={slug} />
-
       <Posts posts={posts} />
 
       <PageNumbers
