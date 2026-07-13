@@ -6,6 +6,7 @@ import Hero from "./_components/Hero";
 import Posts from "./_components/Posts";
 import { getPostsPage } from "./libs/microcms";
 import { eyecatchLocal } from "./libs/constants";
+import Pagination from "./_components/Pagination";
 
 export const revalidate = 1;
 
@@ -51,6 +52,7 @@ export default async function Home() {
         imageOn
       />
       <Posts posts={posts} />
+      <Pagination nextUrl="/blog" nextText="More Posts" />
     </Container>
   );
 }

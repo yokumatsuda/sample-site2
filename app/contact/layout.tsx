@@ -37,7 +37,7 @@ type ContactLayoutProps = {
 export default function ContactLayout({ children }: ContactLayoutProps) {
   return (
     <Container>
-      <Hero title="Contact" subtitle="お問い合わせ" />
+      <Hero title="Contact" subtitle="お問い合わせ" titleSize="compact" />
       <div className="mx-auto max-w-3xl">{children}</div>
     </Container>
   );

@@ -15,7 +15,7 @@ export default function Logo({ boxOn = false }: LogoProps) {
       <Image
         src="/YWD-LOGO-removebg.png"
         alt="YWD"
-        className="h-6 w-auto"
+        className="h-7 w-auto"
         width={348}
         height={133}
       />
