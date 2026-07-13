@@ -1,5 +1,4 @@
 // app\about\page.tsx
-import type { Metadata } from "next";
 import Image from "next/image";
 import PostBody from "../_components/PostBody";
 import Contact from "../_components/Contact";

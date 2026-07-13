@@ -23,7 +23,7 @@ export default function Pagination({
     "flex items-center gap-[0.5em] text-(length:--small-heading3) max-sm:text-xs";
   return (
     <nav aria-label="前後の記事">
-      <ul className="my-[var(--space-lg)] flex items-center justify-between gap-[1em]">
+      <ul className="my-[var(--space-lg)] flex items-center justify-between gap-[1.5em] md:gap-[6em]">
         {prevText && prevUrl && (
           <li>
             <Link href={prevUrl} className={iconTextClassName}>

@@ -9,6 +9,7 @@ import { siteMeta } from "./libs/constants";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
+import PageFrame from "./_components/PageFrame";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -62,7 +63,9 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <Header />
-        <main>{children}</main>
+        <PageFrame>
+          <main>{children}</main>
+        </PageFrame>
         <Footer />
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
