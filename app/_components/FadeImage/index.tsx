@@ -1,29 +1,39 @@
-// app\_components\FadeImage\index.tsx
+// app/_components/FadeImage/index.tsx
 "use client";
 
+import Image, { type ImageProps } from "next/image";
 import { useState } from "react";
-import Image from "next/image";
-import eyecatch from "@/images/ogp-big.jpg";
 
-export default function FadeImage() {
+type FadeImageProps = ImageProps & {
+  frameClassName?: string;
+  previewSrc?: string | null;
+};
+
+export default function FadeImage({
+  frameClassName = "",
+  previewSrc,
+  className = "",
+  onLoad,
+  alt,
+  ...imageProps
+}: FadeImageProps) {
   const [loaded, setLoaded] = useState(false);
 
   return (
     <figure
-      className="fadeImageFrame"
-      style={
-        eyecatch.blurDataURL
-          ? { backgroundImage: `url(${eyecatch.blurDataURL})` }
-          : undefined
-      }
+      className={`overflow-hidden bg-[var(--gray-10)] bg-cover bg-center ${frameClassName}`}
+      style={previewSrc ? { backgroundImage: `url(${previewSrc})` } : undefined}
     >
       <Image
-        className={`fadeImage ${loaded ? "fadeImageLoaded" : ""}`}
-        src={eyecatch}
-        alt=""
-        sizes="(min-width: 1152px) 1152px, 100vw"
-        loading="eager"
-        onLoad={() => setLoaded(true)}
+        {...imageProps}
+        alt={alt}
+        className={`transition-opacity duration-200 ${
+          loaded ? "opacity-100" : "opacity-0"
+        } ${className}`}
+        onLoad={(event) => {
+          setLoaded(true);
+          onLoad?.(event);
+        }}
       />
     </figure>
   );

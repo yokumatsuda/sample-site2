@@ -2,7 +2,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import sanitizeHtml from "sanitize-html";
-import Image from "next/image";
+import FadeImage from "../../_components/FadeImage";
+import { getImagePreviewUrl } from "../../libs/get-image-preview-url";
 
 import PostHeader from "../../_components/PostHeader";
 import PostBody from "../../_components/PostBody";
@@ -45,6 +46,7 @@ export async function generateMetadata({
   }
 
   const description = extractText(post.content);
+
   const eyecatch = post.eyecatch ?? eyecatchLocal;
 
   const title = `${post.title} | ${siteMeta.siteTitle}`;
@@ -104,6 +106,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   });
 
   const eyecatch = post.eyecatch ?? eyecatchLocal;
+  const previewSrc = getImagePreviewUrl(eyecatch.url, 48);
 
   const allSlugs = await getAllSlugs();
   const [prevPost, nextPost] = prevNextPost(allSlugs, slug);
@@ -115,17 +118,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         subtitle="Blog Article"
         publish={post.publishDate}
       />
-      <figure className="overflow-hidden">
-        <Image
-          src={eyecatch.url}
-          alt=""
-          width={eyecatch.width}
-          height={eyecatch.height}
-          sizes="(min-width: 1152px) 1152px, 100vw"
-          priority
-          className="h-auto w-full"
-        />
-      </figure>
+
+      <FadeImage
+        src={eyecatch.url}
+        alt=""
+        width={eyecatch.width}
+        height={eyecatch.height}
+        sizes="(min-width: 1152px) 1152px, 100vw"
+        preload
+        previewSrc={previewSrc}
+        className="h-auto w-full"
+      />
 
       <TwoColumn>
         <TwoColumnMain>
