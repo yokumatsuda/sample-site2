@@ -20,7 +20,6 @@ export default function Hero({ title, subtitle, imageOn = false }: HeroProps) {
 
       {imageOn && (
         <FadeImage
-          frameClassName="md:w-1/2"
           src={HeroImage}
           alt=""
           sizes="(min-width: 1152px) 576px, (min-width: 768px) 50vw, 100vw"

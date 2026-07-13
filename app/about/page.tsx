@@ -1,4 +1,5 @@
 // app\about\page.tsx
+import FadeImage from "../_components/FadeImage";
 import Image from "next/image";
 import PostBody from "../_components/PostBody";
 import Contact from "../_components/Contact";
@@ -13,15 +14,14 @@ import eyecatch from "@/images/ogp-big.jpg";
 export default function AboutPage() {
   return (
     <>
-      <figure className="overflow-hidden">
-        <Image
-          src={eyecatch}
-          alt=""
-          sizes="(min-width: 1152px) 1152px, 100vw"
-          placeholder="blur"
-          priority
-        />
-      </figure>
+      <FadeImage
+        src={eyecatch}
+        alt=""
+        sizes="(min-width: 1152px) 1152px, 100vw"
+        preload
+        previewSrc={eyecatch.blurDataURL}
+        className="h-auto w-full"
+      />
 
       <TwoColumn>
         <TwoColumnMain>
