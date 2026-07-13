@@ -24,7 +24,9 @@ export type Category = {
 export type BlogListItem = {
   title: string;
   slug: string;
+  publishDate: string;
   eyecatch?: MicroCMSImage;
+  categories?: Category[];
 } & MicroCMSListContent;
 
 export type BlogPost = {
@@ -53,7 +55,7 @@ export async function getPostsPage(
   return client.getList<BlogListItem>({
     endpoint: "blogs",
     queries: {
-      fields: "title,slug,eyecatch",
+      fields: "title,slug,publishDate,eyecatch,categories",
       orders: "-publishDate",
       limit,
       offset,
@@ -135,7 +137,7 @@ export async function getPostsByCategoryPage(
   return client.getList<BlogListItem>({
     endpoint: "blogs",
     queries: {
-      fields: "title,slug,eyecatch",
+      fields: "title,slug,publishDate,eyecatch,categories",
       filters: `categories[contains]${categoryId}`,
       orders: "-publishDate",
       limit,

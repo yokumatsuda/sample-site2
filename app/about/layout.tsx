@@ -35,7 +35,10 @@ type AboutLayoutProps = {
 export default function AboutLayout({ children }: AboutLayoutProps) {
   return (
     <Container>
-      <Hero title="About" subtitle="About development activities" />
+      <Hero
+        title="About"
+        subtitle="このサイトはYOKU Web デザインによる制作サンプルです。"
+      />
       {children}
     </Container>
   );

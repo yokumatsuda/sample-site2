@@ -48,7 +48,10 @@ export default async function BlogPage() {
 
   return (
     <>
-      <Hero title="Blog" subtitle="Recent Posts" />
+      <Hero
+        title="Blog"
+        subtitle="このサイトはYOKU Web デザインによる制作サンプルです。"
+      />
       <CategoryFilter categories={categories} />
 
       <Posts posts={posts} />

@@ -1,4 +1,5 @@
 // app\blog\[slug]\page.tsx
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import sanitizeHtml from "sanitize-html";
@@ -46,7 +47,6 @@ export async function generateMetadata({
   }
 
   const description = extractText(post.content);
-
   const eyecatch = post.eyecatch ?? eyecatchLocal;
 
   const title = `${post.title} | ${siteMeta.siteTitle}`;
@@ -107,6 +107,30 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const eyecatch = post.eyecatch ?? eyecatchLocal;
   const previewSrc = getImagePreviewUrl(eyecatch.url, 48);
+  const categories = post.categories ?? [];
+
+  const categorySubtitle =
+    categories.length > 0 ? (
+      <span className="inline-flex flex-wrap gap-x-2 gap-y-1">
+        {categories.map((category, index) => {
+          const categorySlug = category.slug ?? category.id;
+
+          return (
+            <span key={category.id} className="inline-flex gap-x-2">
+              {index > 0 && <span aria-hidden="true">/</span>}
+              <Link
+                href={`/blog/category/${categorySlug}`}
+                className="hover:text-[var(--accent)]"
+              >
+                {category.name}
+              </Link>
+            </span>
+          );
+        })}
+      </span>
+    ) : (
+      "Blog Article"
+    );
 
   const allSlugs = await getAllSlugs();
   const [prevPost, nextPost] = prevNextPost(allSlugs, slug);
@@ -115,7 +139,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <article>
       <PostHeader
         title={post.title}
-        subtitle="Blog Article"
+        subtitle={categorySubtitle}
         publish={post.publishDate}
       />
 

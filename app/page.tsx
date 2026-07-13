@@ -7,6 +7,8 @@ import Posts from "./_components/Posts";
 import { getPostsPage } from "./libs/microcms";
 import { eyecatchLocal } from "./libs/constants";
 import Pagination from "./_components/Pagination";
+import Image from "next/image";
+import instagram from "@/images/instagram__1_-removebg-preview.png";
 
 export const revalidate = 1;
 
@@ -47,9 +49,23 @@ export default async function Home() {
   return (
     <Container>
       <Hero
-        title="YOKU"
-        subtitle="Yoku Web デザインのサンプルサイトです"
-        imageOn
+        title="YWD"
+        subtitle="このサイトはYOKU Web デザインによる制作サンプルです。"
+        sideContent={
+          <a
+            href="https://www.instagram.com/yoku4.9/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagramを開く"
+            className="inline-block transition-opacity hover:opacity-70"
+          >
+            <Image
+              src={instagram}
+              alt=""
+              className="h-auto w-28 shrink-0 md:w-48"
+            />
+          </a>
+        }
       />
       <Posts posts={posts} />
       <Pagination nextUrl="/blog" nextText="More Posts" />

@@ -33,7 +33,13 @@
 .text {
   display: grid;
   grid-template-rows: 0fr;
+  overflow: hidden;
   transition: grid-template-rows 0.5s;
+}
+
+.open > .text,
+.close > .text {
+  margin-top: 0;
 }
 
 .open .text {
@@ -48,4 +54,8 @@
 .textInner {
   padding: 0 1.14em 1.14em;
   font-size: calc(var(--body) * 0.875);
+}
+
+.textInner > p {
+  margin-block: 0;
 }

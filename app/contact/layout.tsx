@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import Container from "../_components/Container";
 import Hero from "../_components/Hero";
 import { siteMeta } from "../libs/constants";
+import contactImage from "@/images/HeroSection_img5.jpg";
 
 const title = `お問い合わせ | ${siteMeta.siteTitle}`;
 const description =
@@ -37,7 +38,13 @@ type ContactLayoutProps = {
 export default function ContactLayout({ children }: ContactLayoutProps) {
   return (
     <Container>
-      <Hero title="Contact" subtitle="お問い合わせ" titleSize="compact" />
+      <Hero
+        title="Contact"
+        subtitle="お問い合わせ"
+        titleSize="compact"
+        imageOn
+        imageSrc={contactImage}
+      />
       <div className="mx-auto max-w-3xl">{children}</div>
     </Container>
   );

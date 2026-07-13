@@ -9,7 +9,7 @@ type ConvertDateProps = {
 export default function ConvertDate({ dateISO }: ConvertDateProps) {
   return (
     <time dateTime={dateISO}>
-      {format(parseISO(dateISO), "yyyy年MM月dd日", {
+      {format(parseISO(dateISO), "yyyy.MM.dd", {
         locale: ja,
       })}
     </time>

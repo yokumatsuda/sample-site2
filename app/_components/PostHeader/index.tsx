@@ -1,4 +1,5 @@
 // app\_components\PostHeader\index.tsx
+import type { ReactNode } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import ConvertDate from "../ConvertDate";
@@ -6,7 +7,7 @@ import styles from "./index.module.css";
 
 type PostHeaderProps = {
   title: string;
-  subtitle: string;
+  subtitle: ReactNode;
   publish?: string | null;
 };
 

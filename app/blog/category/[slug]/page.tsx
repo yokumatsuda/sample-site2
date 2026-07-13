@@ -104,7 +104,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <>
-      <PostHeader title={category.name} subtitle="Blog Category" />
+      <PostHeader title={category.name} subtitle="Category" />
       <CategoryFilter categories={categories} current={slug} />
 
       <Posts posts={posts} />
