@@ -61,24 +61,4 @@
     color: inherit;
     text-decoration: none;
   }
-  /* 
-  @layer components {
-    .fadeImageFrame {
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .fadeImage {
-      display: block;
-      width: 100%;
-      height: auto;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .fadeImageLoaded {
-      opacity: 1;
-    }
-  } */
 }
